@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Course</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 id="course-title"></h1>
+  <div id="lessons" class="list"></div>
+  <script src="script.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const courseId = params.get("id");
+    renderLessons(courseId);
+  </script>
+</body>
+</html>
