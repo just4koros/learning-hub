@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Lesson</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Hero Banner -->
   <header class="hero small">
     <h1 id="lesson-title"></h1>
     <p>Learn, practice, and track your progress</p>
   </header>
 
+  <!-- Lesson Content -->
   <section class="lesson-container">
     <div id="lesson-content" class="card"></div>
     <div id="quiz" class="quiz"></div>
@@ -17,6 +21,7 @@
     <a href="course.html?id=1" class="btn">⬅ Back to Course</a>
   </section>
 
+  <!-- Scripts -->
   <script src="script.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
