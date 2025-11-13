@@ -1,4 +1,5 @@
 console.log("✅ script.js loaded");
+
 // --- Courses ---
 const courses = [
   { id: 1, title: "Mathematics", description: "Form 1–4 Maths concepts and problem solving" },
@@ -6,6 +7,14 @@ const courses = [
   { id: 3, title: "Physics", description: "Form 1–4 Physics syllabus topics" },
   { id: 4, title: "Biology", description: "Form 1–4 Biology syllabus topics" }
 ];
+
+// --- Subject Icons ---
+const icons = {
+  Mathematics: "📐",
+  Chemistry: "⚗️",
+  Physics: "🔭",
+  Biology: "🧬"
+};
 
 // --- Lessons (Form 1–4 per subject) ---
 const lessons = [
@@ -105,7 +114,7 @@ function renderCourses() {
     const percent = total > 0 ? (completed / total) * 100 : 0;
 
     div.innerHTML = `
-      <h2>${c.title}</h2>
+      <h2>${icons[c.title] || ""} ${c.title}</h2>
       <p>${c.description}</p>
       <div class="progress-bar">
         <div class="progress-fill" style="width:${percent}%"></div>
@@ -114,8 +123,9 @@ function renderCourses() {
       <a href="course.html?id=${c.id}" class="btn">View Course</a>
     `;
     container.appendChild(div);
-console.log("Rendering courses:", courses);
   });
+
+  console.log("Rendering courses:", courses);
 }
 
 // --- Render Lessons ---
@@ -174,24 +184,4 @@ function renderLesson(lessonId) {
       quizDiv.appendChild(qDiv);
     });
   } else {
-    markLessonComplete(lessonId);
-    checkBadgeMilestones();
-    showNextLesson(lessonId);
-  }
-}
-
-// --- Show Next Lesson ---
-function showNextLesson(currentLessonId) {
-  const currentLesson = lessons.find(l => l.id == currentLessonId);
-  const courseLessons = lessons.filter(l => l.courseId == currentLesson.courseId);
-  const currentIndex = courseLessons.findIndex(l => l.id == currentLessonId);
-
-  const navDiv = document.getElementById("navigation");
-  if (currentIndex < courseLessons.length - 1) {
-    const nextLesson = courseLessons[currentIndex + 1];
-    navDiv.innerHTML = `<a href="lesson.html?id=${nextLesson.id}" class="btn">➡ Next Lesson</a>`;
-  } else {
-    navDiv.innerHTML = `<p>🎉 You’ve completed all lessons in this course!</p>`;
-  }
-}
-
+    markLessonComplete(lesson
