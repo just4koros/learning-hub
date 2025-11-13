@@ -5,13 +5,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 id="lesson-title"></h1>
-  <div id="lesson-content"></div>
-  <div id="quiz"></div>
+  <header class="hero small">
+    <h1 id="lesson-title"></h1>
+    <p>Learn, practice, and track your progress</p>
+  </header>
+
+  <section class="lesson-container">
+    <div id="lesson-content" class="card"></div>
+    <div id="quiz" class="quiz"></div>
+    <div id="navigation"></div>
+    <a href="course.html?id=1" class="btn">⬅ Back to Course</a>
+  </section>
+
   <script src="script.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
-    const lessonId = params.get("id");
+    const lessonId = parseInt(params.get("id"));
     renderLesson(lessonId);
   </script>
 </body>
