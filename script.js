@@ -1,3 +1,4 @@
+console.log("✅ script.js loaded");
 // --- Courses ---
 const courses = [
   { id: 1, title: "Mathematics", description: "Form 1–4 Maths concepts and problem solving" },
@@ -193,3 +194,4 @@ function showNextLesson(currentLessonId) {
     navDiv.innerHTML = `<p>🎉 You’ve completed all lessons in this course!</p>`;
   }
 }
+
