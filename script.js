@@ -1,4 +1,4 @@
-// --- Example Data ---
+// --- Courses ---
 const courses = [
   { id: 1, title: "Mathematics", description: "Primary & Secondary Maths concepts" },
   { id: 2, title: "Chemistry", description: "Learn chemical reactions and lab skills" },
@@ -6,14 +6,26 @@ const courses = [
   { id: 4, title: "Biology", description: "Understand living organisms and ecosystems" }
 ];
 
+// --- Lessons ---
 const lessons = [
+  // Mathematics
   { id: 101, courseId: 1, title: "Form 1 Algebra", content: "Algebraic expressions and equations." },
   { id: 102, courseId: 1, title: "Geometry Basics", content: "Angles, shapes, and measurements." },
+
+  // Chemistry
   { id: 201, courseId: 2, title: "Acids & Bases", content: "Properties and reactions of acids and bases." },
+  { id: 202, courseId: 2, title: "Periodic Table", content: "Elements arranged by atomic number and properties." },
+
+  // Physics
   { id: 301, courseId: 3, title: "Newton’s Laws", content: "Understanding force and motion." },
-  { id: 401, courseId: 4, title: "Cell Structure", content: "Parts and functions of a cell." }
+  { id: 302, courseId: 3, title: "Electricity Basics", content: "Current, voltage, and resistance." },
+
+  // Biology
+  { id: 401, courseId: 4, title: "Cell Structure", content: "Parts and functions of a cell." },
+  { id: 402, courseId: 4, title: "Human Digestive System", content: "Organs and processes of digestion." }
 ];
 
+// --- Quizzes ---
 const quizzes = {
   101: [
     { q: "Simplify: 2x + 3x", options: ["2x", "3x", "5x", "6x"], answer: 2 },
@@ -72,6 +84,7 @@ function checkBadgeMilestones() {
 // --- Render Courses ---
 function renderCourses() {
   const container = document.getElementById("courses");
+  container.innerHTML = ""; // clear old content
   const progress = getProgress();
 
   courses.forEach(c => {
@@ -101,6 +114,7 @@ function renderLessons(courseId) {
   document.getElementById("course-title").innerText = course.title;
 
   const container = document.getElementById("lessons");
+  container.innerHTML = ""; // clear old content
   const progress = getProgress();
 
   lessons.filter(l => l.courseId == courseId).forEach(l => {
@@ -195,15 +209,4 @@ function renderDashboard() {
   completedLessons.forEach(id => {
     const lesson = lessons.find(l => l.id == id);
     const div = document.createElement("div");
-    div.innerText = `✅ ${lesson.title} (${courses.find(c => c.id == lesson.courseId).title})`;
-    listDiv.appendChild(div);
-  });
-
-  const badgeDiv = document.createElement("div");
-  badgeDiv.className = "badges";
-  badgeDiv.innerHTML = "<h3>Badges Earned:</h3>";
-  stats.badges.forEach(b => {
-    let icon = "🏅";
-    if (b === "Bronze") icon = "🥉";
-    if (b === "Silver") icon = "🥈";
-    if (
+    div.inner
