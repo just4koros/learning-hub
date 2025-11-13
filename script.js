@@ -251,6 +251,64 @@ function renderDashboard() {
     const span = document.createElement("span");
     span.innerText = `🏅 ${b} `;
     badgeDiv.appendChild(span);
+    // --- Badge System with Levels ---
+function checkBadgeMilestones() {
+  const progress = getProgress();
+  const stats = getStats();
+  const completedLessons = Object.keys(progress).filter(id => progress[id].completed).length;
+
+  if (completedLessons >= 1 && !stats.badges.includes("Bronze")) {
+    awardBadge("Bronze");
+  }
+  if (completedLessons >= 5 && !stats.badges.includes("Silver")) {
+    awardBadge("Silver");
+  }
+  if (completedLessons >= 10 && !stats.badges.includes("Gold")) {
+    awardBadge("Gold");
+  }
+  if (completedLessons === lessons.length && !stats.badges.includes("Platinum")) {
+    awardBadge("Platinum");
+  }
+}
+
+// --- Update Quiz Logic to include badge check ---
+function renderLesson(lessonId) {
+  const lesson = lessons.find(l => l.id == lessonId);
+  document.getElementById("lesson-title").innerText = lesson.title;
+  document.getElementById("lesson-content").innerText = lesson.content;
+
+  const quizData = quizzes[lessonId];
+  if (quizData) {
+    const quizDiv = document.getElementById("quiz");
+    quizDiv.innerHTML = "<h3>Quiz</h3>";
+    quizData.forEach((q, i) => {
+      const qDiv = document.createElement("div");
+      qDiv.innerHTML = `<p>${q.q}</p>`;
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => {
+          if (idx === q.answer) {
+            alert("✅ Correct!");
+            awardPoints(10);
+            markLessonComplete(lessonId);
+            checkBadgeMilestones(); // NEW
+            showNextLesson(lessonId);
+          } else {
+            alert("❌ Try again!");
+          }
+        };
+        qDiv.appendChild(btn);
+      });
+      quizDiv.appendChild(qDiv);
+    });
+  } else {
+    markLessonComplete(lessonId);
+    checkBadgeMilestones(); // NEW
+    showNextLesson(lessonId);
+  }
+}
+
   });
   listDiv.appendChild(badgeDiv);
 }
