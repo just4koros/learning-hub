@@ -113,3 +113,19 @@ function markLessonComplete(lessonId) {
   progress[lessonId] = { completed: true };
   saveProgress(progress);
 }
+function renderDashboard() {
+  const progress = getProgress();
+  const completedLessons = Object.keys(progress).filter(id => progress[id].completed);
+
+  const summaryDiv = document.getElementById("summary");
+  summaryDiv.innerHTML = `<p>You have completed ${completedLessons.length} lessons so far 🎉</p>`;
+
+  const listDiv = document.getElementById("completed-lessons");
+  listDiv.innerHTML = "<h3>Completed Lessons:</h3>";
+  completedLessons.forEach(id => {
+    const lesson = lessons.find(l => l.id == id);
+    const div = document.createElement("div");
+    div.innerText = `✅ ${lesson.title} (${courses.find(c => c.id == lesson.courseId).title})`;
+    listDiv.appendChild(div);
+  });
+}
