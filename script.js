@@ -153,7 +153,6 @@ function renderLessons(courseId) {
 }
 
 // --- Render Lesson + Quiz ---
-// --- Render Lesson + Quiz ---
 function renderLesson(lessonId) {
   const lesson = lessons.find(l => l.id == lessonId);
   document.getElementById("lesson-title").innerText = lesson.title;
@@ -191,3 +190,4 @@ function renderLesson(lessonId) {
     showNextLesson(lessonId);
   }
 }
+
