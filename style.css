@@ -1,3 +1,4 @@
+/* General Reset */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -5,6 +6,7 @@ body {
   color: #333;
 }
 
+/* Hero Banner */
 .hero {
   background: linear-gradient(135deg, #007BFF, #00C6FF);
   color: white;
@@ -12,10 +14,18 @@ body {
   padding: 50px 20px;
 }
 
-h1, h2 {
+.hero.small {
+  background: linear-gradient(135deg, #00C6FF, #007BFF);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+h1, h2, h3 {
   margin: 10px 0;
 }
 
+/* Course Grid */
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -29,6 +39,11 @@ h1, h2 {
   border-radius: 10px;
   width: 250px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.course:hover {
+  transform: translateY(-5px);
 }
 
 .course h2 {
@@ -39,6 +54,7 @@ h1, h2 {
   margin: 5px 0;
 }
 
+/* Progress Bar */
 .progress-bar {
   background: #eee;
   border-radius: 5px;
@@ -54,14 +70,23 @@ h1, h2 {
   transition: width 0.5s ease;
 }
 
-a {
+/* Links & Buttons */
+a, .btn {
   display: inline-block;
   margin-top: 10px;
+  padding: 10px 15px;
+  background: #007BFF;
+  color: white;
+  border-radius: 5px;
   text-decoration: none;
-  color: #007BFF;
   font-weight: bold;
 }
-/* Lesson cards */
+
+a:hover, .btn:hover {
+  background: #0056b3;
+}
+
+/* Lesson Cards */
 .list {
   display: flex;
   flex-wrap: wrap;
@@ -85,43 +110,7 @@ a {
   margin: 5px 0;
 }
 
-.btn {
-  display: inline-block;
-  margin: 20px;
-  padding: 10px 15px;
-  background: #007BFF;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-/* Hero banner (smaller for course page) */
-.hero.small {
-  background: linear-gradient(135deg, #00C6FF, #007BFF);
-  color: white;
-  text-align: center;
-  padding: 30px 20px;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .grid, .list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .course, .lesson {
-    width: 90%; /* Full width on mobile */
-  }
-
-  .hero {
-    padding: 30px 10px;
-  }
-
-  h1 {
-    font-size: 1.5em;
-  }
-}
+/* Lesson Container */
 .lesson-container {
   padding: 20px;
 }
@@ -134,6 +123,7 @@ a {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
+/* Quiz Section */
 .quiz div {
   margin-bottom: 15px;
 }
@@ -157,23 +147,40 @@ a {
   margin-top: 20px;
 }
 
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 15px;
-  background: #007BFF;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
+/* Dashboard Badges */
+.badges {
+  margin-top: 15px;
 }
 
-/* Mobile responsiveness */
+.badges span {
+  display: inline-block;
+  margin: 5px;
+  padding: 8px 12px;
+  background: #eee;
+  border-radius: 20px;
+  font-size: 0.9em;
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .card, .quiz button {
-    width: 100%;
+  .grid, .list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .course, .lesson {
+    width: 90%; /* Full width on mobile */
+  }
+
+  .hero {
+    padding: 30px 10px;
   }
 
   h1 {
     font-size: 1.4em;
+  }
+
+  .card, .quiz button {
+    width: 100%;
   }
 }
