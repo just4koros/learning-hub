@@ -59,24 +59,55 @@ function renderCourses() {
 }
 
 // --- Render Lessons ---
-function renderLessons(courseId) {
-  const course = courses.find(c => c.id == courseId);
-  document.getElementById("course-title").innerText = course.title;
+function renderLesson(lessonId) {
+  const lesson = lessons.find(l => l.id == lessonId);
+  document.getElementById("lesson-title").innerText = lesson.title;
+  document.getElementById("lesson-content").innerText = lesson.content;
 
-  const container = document.getElementById("lessons");
-  const progress = getProgress();
+  const quizData = quizzes[lessonId];
+  if (quizData) {
+    const quizDiv = document.getElementById("quiz");
+    quizDiv.innerHTML = "<h3>Quiz</h3>";
+    quizData.forEach((q, i) => {
+      const qDiv = document.createElement("div");
+      qDiv.innerHTML = `<p>${q.q}</p>`;
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => {
+          if (idx === q.answer) {
+            alert("✅ Correct!");
+            markLessonComplete(lessonId);
+            showNextLesson(lessonId);
+          } else {
+            alert("❌ Try again!");
+          }
+        };
+        qDiv.appendChild(btn);
+      });
+      quizDiv.appendChild(qDiv);
+    });
+  } else {
+    // If no quiz, mark lesson complete immediately
+    markLessonComplete(lessonId);
+    showNextLesson(lessonId);
+  }
+}
 
-  lessons.filter(l => l.courseId == courseId).forEach(l => {
-    const div = document.createElement("div");
-    div.className = "lesson";
+// Show Next Lesson button
+function showNextLesson(currentLessonId) {
+  const currentLesson = lessons.find(l => l.id == currentLessonId);
+  const courseLessons = lessons.filter(l => l.courseId == currentLesson.courseId);
+  const currentIndex = courseLessons.findIndex(l => l.id == currentLessonId);
 
-    const status = progress[l.id]?.completed ? "✅ Completed" : "❌ Not Completed";
-
-    div.innerHTML = `<h3>${l.title}</h3>
-                     <p>Status: ${status}</p>
-                     <a href="lesson.html?id=${l.id}">Open Lesson</a>`;
-    container.appendChild(div);
-  });
+  if (currentIndex < courseLessons.length - 1) {
+    const nextLesson = courseLessons[currentIndex + 1];
+    const navDiv = document.getElementById("navigation");
+    navDiv.innerHTML = `<a href="lesson.html?id=${nextLesson.id}" class="btn">➡ Next Lesson</a>`;
+  } else {
+    const navDiv = document.getElementById("navigation");
+    navDiv.innerHTML = `<p>🎉 You’ve completed all lessons in this course!</p>`;
+  }
 }
 
 // --- Render Lesson + Quiz ---
