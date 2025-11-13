@@ -248,27 +248,16 @@ function renderDashboard() {
   const badgeDiv = document.createElement("div");
   badgeDiv.innerHTML = "<h3>Badges Earned:</h3>";
   stats.badges.forEach(b => {
+    let icon = "🏅";
+    if (b === "Bronze") icon = "🥉";
+    if (b === "Silver") icon = "🥈";
+    if (b === "Gold") icon = "🥇";
+    if (b === "Platinum") icon = "🏆";
     const span = document.createElement("span");
-    span.innerText = `🏅 ${b} `;
+    span.innerText = `${icon} ${b} `;
     badgeDiv.appendChild(span);
-    // --- Badge System with Levels ---
-function checkBadgeMilestones() {
-  const progress = getProgress();
-  const stats = getStats();
-  const completedLessons = Object.keys(progress).filter(id => progress[id].completed).length;
-
-  if (completedLessons >= 1 && !stats.badges.includes("Bronze")) {
-    awardBadge("Bronze");
-  }
-  if (completedLessons >= 5 && !stats.badges.includes("Silver")) {
-    awardBadge("Silver");
-  }
-  if (completedLessons >= 10 && !stats.badges.includes("Gold")) {
-    awardBadge("Gold");
-  }
-  if (completedLessons === lessons.length && !stats.badges.includes("Platinum")) {
-    awardBadge("Platinum");
-  }
+  });
+  listDiv.appendChild(badgeDiv);
 }
 
 // --- Update Quiz Logic to include badge check ---
