@@ -5,8 +5,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 id="course-title"></h1>
-  <div id="lessons" class="list"></div>
+  <header class="hero small">
+    <h1 id="course-title"></h1>
+    <p>Explore lessons and track your progress</p>
+  </header>
+
+  <section>
+    <div id="lessons" class="list"></div>
+    <a href="index.html" class="btn">⬅ Back to Courses</a>
+  </section>
+
   <script src="script.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
