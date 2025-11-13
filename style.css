@@ -1,0 +1,186 @@
+/* General Reset */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+
+/* Hero Banner */
+.hero {
+  background: linear-gradient(135deg, #007BFF, #00C6FF);
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.hero.small {
+  background: linear-gradient(135deg, #00C6FF, #007BFF);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+h1, h2, h3 {
+  margin: 10px 0;
+}
+
+/* Course Grid */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.course {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.course:hover {
+  transform: translateY(-5px);
+}
+
+.course h2 {
+  margin: 0 0 10px;
+}
+
+.course p {
+  margin: 5px 0;
+}
+
+/* Progress Bar */
+.progress-bar {
+  background: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 10px;
+  margin: 10px 0;
+}
+
+.progress-fill {
+  background: #007BFF;
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+/* Links & Buttons */
+a, .btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: #007BFF;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover, .btn:hover {
+  background: #0056b3;
+}
+
+/* Lesson Cards */
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.lesson {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.lesson h3 {
+  margin: 0 0 10px;
+}
+
+.lesson p {
+  margin: 5px 0;
+}
+
+/* Lesson Container */
+.lesson-container {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Quiz Section */
+.quiz div {
+  margin-bottom: 15px;
+}
+
+.quiz button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.quiz button:hover {
+  background: #0056b3;
+}
+
+#navigation {
+  margin-top: 20px;
+}
+
+/* Dashboard Badges */
+.badges {
+  margin-top: 15px;
+}
+
+.badges span {
+  display: inline-block;
+  margin: 5px;
+  padding: 8px 12px;
+  background: #eee;
+  border-radius: 20px;
+  font-size: 0.9em;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .grid, .list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .course, .lesson {
+    width: 90%; /* Full width on mobile */
+  }
+
+  .hero {
+    padding: 30px 10px;
+  }
+
+  h1 {
+    font-size: 1.4em;
+  }
+
+  .card, .quiz button {
+    width: 100%;
+  }
+}
