@@ -209,4 +209,4 @@ function renderDashboard() {
   completedLessons.forEach(id => {
     const lesson = lessons.find(l => l.id == id);
     const div = document.createElement("div");
-    div.inner
+    div.
