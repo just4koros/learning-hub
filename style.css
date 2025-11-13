@@ -61,3 +61,64 @@ a {
   color: #007BFF;
   font-weight: bold;
 }
+/* Lesson cards */
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.lesson {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.lesson h3 {
+  margin: 0 0 10px;
+}
+
+.lesson p {
+  margin: 5px 0;
+}
+
+.btn {
+  display: inline-block;
+  margin: 20px;
+  padding: 10px 15px;
+  background: #007BFF;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* Hero banner (smaller for course page) */
+.hero.small {
+  background: linear-gradient(135deg, #00C6FF, #007BFF);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .grid, .list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .course, .lesson {
+    width: 90%; /* Full width on mobile */
+  }
+
+  .hero {
+    padding: 30px 10px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+}
