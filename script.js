@@ -181,4 +181,5 @@ function renderLesson(lessonId) {
 // --- Show Next Lesson ---
 function showNextLesson(currentLessonId) {
   const currentLesson = lessons.find(l => l.id == currentLessonId);
+
   const courseLessons = lessons.filter(l => l.courseId == currentLesson.course
