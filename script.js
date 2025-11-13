@@ -43,11 +43,17 @@ function renderCourses() {
     // Count completed lessons
     const completed = lessons.filter(l => l.courseId == c.id && progress[l.id]?.completed).length;
     const total = lessons.filter(l => l.courseId == c.id).length;
+    const percent = total > 0 ? (completed / total) * 100 : 0;
 
-    div.innerHTML = `<h2>${c.title}</h2>
-                     <p>${c.description}</p>
-                     <p>Progress: ${completed}/${total} lessons</p>
-                     <a href="course.html?id=${c.id}">View Course</a>`;
+    div.innerHTML = `
+      <h2>${c.title}</h2>
+      <p>${c.description}</p>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:${percent}%"></div>
+      </div>
+      <p>${completed}/${total} lessons completed</p>
+      <a href="course.html?id=${c.id}">View Course</a>
+    `;
     container.appendChild(div);
   });
 }
