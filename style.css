@@ -1,23 +1,57 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
+  margin: 0;
   background: #f9f9f9;
+  color: #333;
 }
 
-h1 {
-  color: #333;
+.hero {
+  background: linear-gradient(135deg, #007BFF, #00C6FF);
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+h1, h2 {
+  margin: 10px 0;
 }
 
 .grid {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  padding: 20px;
 }
 
-.course, .lesson {
+.course {
   background: white;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.course h2 {
+  margin: 0 0 10px;
+}
+
+.course p {
+  margin: 5px 0;
+}
+
+.progress-bar {
+  background: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 10px;
+  margin: 10px 0;
+}
+
+.progress-fill {
+  background: #007BFF;
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
 }
 
 a {
@@ -25,5 +59,5 @@ a {
   margin-top: 10px;
   text-decoration: none;
   color: #007BFF;
+  font-weight: bold;
 }
-
