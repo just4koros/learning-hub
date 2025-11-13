@@ -2,35 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Dashboard</title>
+  <title>My Learning Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Hero Banner -->
-  <header class="hero small">
+  <header class="hero">
     <h1>My Learning Dashboard</h1>
     <p>Track your progress, points, and badges 🧠</p>
   </header>
 
-  <!-- Dashboard Content -->
-  <section class="lesson-container">
-    <div id="summary" class="card"></div>
-    <div id="completed-lessons" class="card"></div>
-    <a href="index.html" class="btn">⬅ Back to Courses</a>
+  <section>
+    <h3>Your Stats</h3>
+    <p>Points: <span id="points">0</span></p>
+    <p>Badges:</p>
+    <ul id="badges"></ul>
   </section>
-<section>
-  <h3>Your Stats</h3>
-  <p>Points: <span id="points">0</span></p>
-  <p>Badges:</p>
-  <ul id="badges"></ul>
-</section>
 
-  <!-- Scripts -->
+  <section>
+    <h3>Motivational Quote</h3>
+    <blockquote>
+      “Success is the sum of small efforts, repeated day in and day out.” — Robert Collier
+    </blockquote>
+  </section>
+
+  <a href="course.html" class="btn">← Back to Courses</a>
+
   <script src="script.js"></script>
   <script>
     renderDashboard();
   </script>
 </body>
-
 </html>
