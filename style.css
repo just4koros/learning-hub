@@ -122,3 +122,58 @@ a {
     font-size: 1.5em;
   }
 }
+.lesson-container {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.quiz div {
+  margin-bottom: 15px;
+}
+
+.quiz button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.quiz button:hover {
+  background: #0056b3;
+}
+
+#navigation {
+  margin-top: 20px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 15px;
+  background: #007BFF;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .card, .quiz button {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 1.4em;
+  }
+}
