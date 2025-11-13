@@ -183,4 +183,32 @@ a:hover, .btn:hover {
   .card, .quiz button {
     width: 100%;
   }
+.course {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.course:hover {
+  transform: scale(1.02);
+}
+.progress-bar {
+  background: #eee;
+  border-radius: 4px;
+  height: 10px;
+  margin: 8px 0;
+}
+.progress-fill {
+  background: #007bff;
+  height: 100%;
+  border-radius: 4px;
+}
+.btn {
+  background: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
 }
