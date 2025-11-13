@@ -155,3 +155,102 @@ function renderDashboard() {
     listDiv.appendChild(div);
   });
 }
+// --- Gamification Helpers ---
+function getStats() {
+  return JSON.parse(localStorage.getItem("stats")) || { points: 0, badges: [] };
+}
+
+function saveStats(stats) {
+  localStorage.setItem("stats", JSON.stringify(stats));
+}
+
+// Award points
+function awardPoints(points) {
+  const stats = getStats();
+  stats.points += points;
+  saveStats(stats);
+}
+
+// Award badge
+function awardBadge(badge) {
+  const stats = getStats();
+  if (!stats.badges.includes(badge)) {
+    stats.badges.push(badge);
+    alert(`🏅 You earned a new badge: ${badge}`);
+  }
+  saveStats(stats);
+}
+
+// --- Update Quiz Logic ---
+function renderLesson(lessonId) {
+  const lesson = lessons.find(l => l.id == lessonId);
+  document.getElementById("lesson-title").innerText = lesson.title;
+  document.getElementById("lesson-content").innerText = lesson.content;
+
+  const quizData = quizzes[lessonId];
+  if (quizData) {
+    const quizDiv = document.getElementById("quiz");
+    quizDiv.innerHTML = "<h3>Quiz</h3>";
+    quizData.forEach((q, i) => {
+      const qDiv = document.createElement("div");
+      qDiv.innerHTML = `<p>${q.q}</p>`;
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => {
+          if (idx === q.answer) {
+            alert("✅ Correct!");
+            awardPoints(10); // 10 points per correct answer
+            markLessonComplete(lessonId);
+            showNextLesson(lessonId);
+
+            // Award badges
+            const progress = getProgress();
+            const completedLessons = Object.keys(progress).filter(id => progress[id].completed).length;
+            if (completedLessons === 1) awardBadge("First Step");
+            if (completedLessons === lessons.length) awardBadge("Course Master");
+          } else {
+            alert("❌ Try again!");
+          }
+        };
+        qDiv.appendChild(btn);
+      });
+      quizDiv.appendChild(qDiv);
+    });
+  } else {
+    markLessonComplete(lessonId);
+    awardBadge("Lesson Explorer");
+    showNextLesson(lessonId);
+  }
+}
+
+// --- Dashboard Update ---
+function renderDashboard() {
+  const progress = getProgress();
+  const stats = getStats();
+  const completedLessons = Object.keys(progress).filter(id => progress[id].completed);
+
+  const summaryDiv = document.getElementById("summary");
+  summaryDiv.innerHTML = `
+    <p>You have completed ${completedLessons.length} lessons 🎉</p>
+    <p>Total Points: ⭐ ${stats.points}</p>
+  `;
+
+  const listDiv = document.getElementById("completed-lessons");
+  listDiv.innerHTML = "<h3>Completed Lessons:</h3>";
+  completedLessons.forEach(id => {
+    const lesson = lessons.find(l => l.id == id);
+    const div = document.createElement("div");
+    div.innerText = `✅ ${lesson.title} (${courses.find(c => c.id == lesson.courseId).title})`;
+    listDiv.appendChild(div);
+  });
+
+  const badgeDiv = document.createElement("div");
+  badgeDiv.innerHTML = "<h3>Badges Earned:</h3>";
+  stats.badges.forEach(b => {
+    const span = document.createElement("span");
+    span.innerText = `🏅 ${b} `;
+    badgeDiv.appendChild(span);
+  });
+  listDiv.appendChild(badgeDiv);
+}
