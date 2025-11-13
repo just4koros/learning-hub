@@ -113,6 +113,7 @@ function renderCourses() {
       <a href="course.html?id=${c.id}" class="btn">View Course</a>
     `;
     container.appendChild(div);
+    console.log("Rendering courses:", courses);
   });
 }
 
@@ -183,3 +184,4 @@ function showNextLesson(currentLessonId) {
   const currentLesson = lessons.find(l => l.id == currentLessonId);
 
   const courseLessons = lessons.filter(l => l.courseId == currentLesson.course
+
