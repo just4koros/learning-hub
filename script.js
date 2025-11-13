@@ -191,3 +191,19 @@ function renderLesson(lessonId) {
   }
 }
 
+// --- Show Next Lesson ---
+function showNextLesson(currentLessonId) {
+  const currentLesson = lessons.find(l => l.id == currentLessonId);
+  const courseLessons = lessons.filter(l => l.courseId == currentLesson.courseId);
+  const currentIndex = courseLessons.findIndex(l => l.id == currentLessonId);
+
+  const navDiv = document.getElementById("navigation");
+  if (currentIndex < courseLessons.length - 1) {
+    const nextLesson = courseLessons[currentIndex + 1];
+    navDiv.innerHTML = `<a href="lesson.html?id=${nextLesson.id}" class="btn">➡ Next Lesson</a>`;
+  } else {
+    navDiv.innerHTML = `<p>🎉 You’ve completed all lessons in this course!</p>`;
+  }
+}
+
+
